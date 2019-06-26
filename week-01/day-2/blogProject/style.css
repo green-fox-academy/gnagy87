@@ -1,0 +1,33 @@
+body {
+    background-color: grey;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;  
+}
+
+h1 , h3, form, .posts {
+    margin-left: 60px;
+}
+
+.navbar {
+    background-color: white;
+    line-height: 70px;  
+}
+
+.navbar h1 {
+    
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+}
+
+.posts {
+    display: block;
+}
+
+textarea, input {
+    border: 2px solid black;
+}
+
