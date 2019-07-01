@@ -10,11 +10,9 @@ public class TwoNumbers {
         // Print the result of 22 multiplied by 13
         System.out.println(a*b);
         // Print the result of 22 divided by 13 (as a decimal fraction)
-        double c=a/b;
-        System.out.println(22./13);
+        System.out.println((double)a/b);
         // Print the integer part of 22 divided by 13
-        int d=a/b;
-        System.out.println(d);
+        System.out.println(a/b);
         // Print the remainder of 22 divided by 13
         System.out.println(a%b);
     }

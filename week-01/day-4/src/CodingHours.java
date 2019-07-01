@@ -14,12 +14,12 @@ public class CodingHours {
         int workdays = 5;
         int workingHours = 52;
         int codingHours = dailyCoding*workdays*semester;
-        //float percentage=(workingHours*semester)/codingHours;
+        double percentage= ((double)(5*dailyCoding)/workingHours)*100;
 
 
         System.out.println("GF students spend " + codingHours + " hours with coding during the course");
 
-        //System.out.println(percentage);
+        System.out.println("Percentage during the course: " + percentage + " %");
 
     }
 }

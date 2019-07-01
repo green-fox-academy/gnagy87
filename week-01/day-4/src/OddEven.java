@@ -7,6 +7,7 @@ public class OddEven {
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
 
+
         if(number%2==0){
             System.out.println(number + " is even.");
         }
