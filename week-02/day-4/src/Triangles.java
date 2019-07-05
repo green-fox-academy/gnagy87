@@ -6,20 +6,20 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Triangles {
   public static void mainDraw(Graphics graphics) {
-    int x = 0;
-    int y = 0;
+    int positionX = 5;
+    int positionY = 15;
     int rows = 15;
 
     for(int i = 1; i <= rows; i++){
+      int x = positionX;
       for(int n = 0; n<(rows-i)*10 ;n++){
         x++;
       }
       for (int j = i; j > 0; j--){
-        triangle(graphics,x,y,x,y);
+        triangle(graphics,x,positionY,x,positionY);
         x+=20;
       }
-      y+=20;
-      x=0;
+      positionY+=20;
     }
   }
   public static void triangle(Graphics graphics, int x1, int y1, int x2, int y2){
