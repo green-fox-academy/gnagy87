@@ -1,28 +1,28 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class SubInt {
   public static void main(String[] args) {
-    int subInt = 1;
-    int[] array = {1};
-    System.out.println(subInt(array,subInt));
+    int subInt = 66;
+    int[] array = {1, 11, 23, 56, 1, 54, 566, 3453};
 
+    System.out.println(subInt(array, subInt));
   }
-  public static String subInt(int[] array, int subInt){
 
-    int index = 0;
-    int[] indices = new int[index];
-    String si = String.valueOf(subInt);
-    String arr = "";
+  public static ArrayList<Integer> subInt(int[] array, int subInt) {
 
-    for(int i = 0; i < array.length; i++){
-      arr=String.valueOf(array[i]);
-      for(int j = 0; j < arr.length(); j++){
-        if(si.equals(arr.substring(j,j+1)));
-        index++;
-        indices[index-1]=i;
-        break;
+    ArrayList<Integer> result = new ArrayList<>();
+    String subI = String.valueOf(subInt);
+    String arrayElement = "";
+
+    for (int i = 0; i < array.length; i++) {
+      arrayElement = String.valueOf(array[i]);
+      for (int j = 0; j < arrayElement.length() - subI.length() + 1; j++) {
+        if (subI.equals(arrayElement.substring(j, j + subI.length()))) {
+          result.add(i);
+          break;
+        }
       }
     }
-    return Arrays.toString(indices);
+    return result;
   }
 }
