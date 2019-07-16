@@ -1,8 +1,13 @@
 package GreenFoxInheritanceExercise;
 
-public class Student extends Person {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public class Student extends Person implements Cloneable {
   String previousOrganization;
   int skippedDays;
+  List<Student>clones = new ArrayList<>();
 
   public Student(String name, int age, String gender, String previousOrganization) {
     super(name, age, gender);
@@ -27,5 +32,15 @@ public class Student extends Person {
   }
   public void skipDays(int numberOfDays){
     this.skippedDays+=numberOfDays;
+  }
+
+  @Override
+  protected Student clone() {
+    Student clones = new Student();
+    clones.name = this.name;
+    clones.age = this.age;
+    clones.gender = this.gender;
+    clones.previousOrganization = this.previousOrganization;
+    return clones;
   }
 }
