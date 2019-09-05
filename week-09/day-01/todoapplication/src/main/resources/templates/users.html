@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>Users</th>
+        </tr>
+        <tr th:each="user : ${ListOfUsers}">
+            <td><a th:href="'/todo/main?id=' + ${user.getId()}" th:text="${user.getUsername()}"></a></td>
+            <td><a th:href="'/todo/users/delete/' + ${user.getId()}">delete user</a></td>
+            <td><a th:href="'/todo/users/edit/' + ${user.getId()}">edit user</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

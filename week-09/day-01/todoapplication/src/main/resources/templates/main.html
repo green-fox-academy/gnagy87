@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Index</title>
+</head>
+<body>
+<h1>Todos for today:</h1>
+    <p th:text="'Hi ' + ${user.getUsername()}"></p>
+    <a href="/todo/users">List of users</a><br>
+
+<a th:href="'/todo/add/' + ${user.getId()}">add new todo</a>
+<br>
+<br>
+<div>
+    <form th:action="'/todo/search/' + ${user.getId()}" method="post">
+        <label for="search">Search for description</label>
+        <input type="text" name="search" id="search">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
+    <form action="/todo/name" method="post">
+        <label for="searchForName">Search for name</label>
+        <input type="text" name="searchForName" id="searchForName">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
+    <form th:action="'/todo/main?id=' + ${user.getId()}" method="post">
+        <button type="submit">List all todos</button>
+    </form>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>ACTION</th>
+            <th>DONE</th>
+            <th>URGENT</th>
+        </tr>
+        <tr th:each="todo : ${ListOfTodos}">
+            <td th:text="${todo.getId()}"></td>
+            <td th:text="${todo.getDescription()}"></td>
+            <td th:text="${todo.isDone()}"></td>
+            <td th:text="${todo.isUrgent()}"></td>
+            <td><a th:href="'/todo/delete/' + ${todo.getId()} + '/' + ${user.getId()}">delete</a></td>
+            <td><a th:href="'/todo/edit/' + ${todo.getId()} + '/' + ${user.getId()}">edit</a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

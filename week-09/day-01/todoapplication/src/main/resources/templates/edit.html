@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit todo page</title>
+</head>
+<body>
+<h1>Edit your todo</h1>
+<div>
+    <form th:action="'/todo/edit/' + ${todo.getId()} + '/' + ${user.getId()}" method="post">
+        <label for="editTodo">Todo</label>
+        <input type="text" name="editTodo" id="editTodo" th:placeholder="${todo.getDescription()}">
+        <br>
+        <label for="isDone">isDone</label>
+        <input type="checkbox" name="isDone" id="isDone">
+        <br>
+        <label for="isUrgent">isUrgent</label>
+        <input type="checkbox" name="isUrgent" id="isUrgent">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<a th:href="'/todo/main/' + ${user.getId()}">cancel</a>
+
+</body>
+</html>
