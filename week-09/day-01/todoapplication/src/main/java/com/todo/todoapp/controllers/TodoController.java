@@ -31,19 +31,11 @@ public class TodoController {
   @PostMapping("/login")
   public String postLoginPage(@RequestParam(name = "username", required = false) String username,
                               @RequestParam(name = "password", required = false) String password){
-    if (username.length() != 0 && password.length() != 0){
-      User user = userService.findUserByName(username);
-      if (user.getPassword().equals(password)){
-
-        return "redirect:/todo/main?id=" + user.getId();
-      }
-      else {
-        return "redirect:/todo/login";
-      }
+    long foundUserId = userService.getLoginId(username, password);
+    if (foundUserId != -1){
+      return "redirect:/todo/main?id=" + foundUserId;
     }
-    else{
-      return "redirect:/todo/login";
-    }
+    return "redirect:/todo/login";
   }
 
   @GetMapping("/signup")
@@ -65,17 +57,15 @@ public class TodoController {
   }
 
   @RequestMapping("/main")
-  public String getMainPage(Model model, @RequestParam(value = "id") String id,
+  public String getMainPage(Model model, @RequestParam(value = "id") Long id,
                             @RequestParam(value = "search", required = false) String search){
-    long idOfUser = Long.parseLong(id);
-    if (search != null){
-      model.addAttribute("user", userService.findUserById(idOfUser));
-      model.addAttribute("ListOfTodos", todoService.listTodos(search, userService.findUserById(idOfUser)));
+    try {
+      model.addAttribute("user", userService.findUserById(id));
+      model.addAttribute("ListOfTodos", todoService.getTodosBySearch(search, id));
+    } catch (Exception e) {
+      return "redirect:/todo/login";
     }
-    else {
-      model.addAttribute("user", userService.findUserById(idOfUser));
-      model.addAttribute("ListOfTodos",userService.findUserById(idOfUser).getTodoList());
-    }
+
     return "main";
   }
 
