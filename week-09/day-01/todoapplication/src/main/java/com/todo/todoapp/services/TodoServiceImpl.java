@@ -11,10 +11,12 @@ import java.util.List;
 public class TodoServiceImpl implements TodoService{
 
   TodoRepository todoRepository;
+  UserService userService;
 
   @Autowired
-  public TodoServiceImpl(TodoRepository todoRepository){
+  public TodoServiceImpl(TodoRepository todoRepository, UserService userService){
     this.todoRepository = todoRepository;
+    this.userService = userService;
   }
 
   @Override
@@ -35,5 +37,15 @@ public class TodoServiceImpl implements TodoService{
   @Override
   public List<Todo> listTodos(String description, User user) {
     return todoRepository.findAllByDescriptionContainsAndUser(description, user);
+  }
+
+  @Override
+  public List<Todo> getTodosBySearch(String searchString, long idOfUser) {
+    if (searchString != null){
+      return listTodos(searchString, userService.findUserById(idOfUser));
+    }
+    else {
+      return userService.findUserById(idOfUser).getTodoList();
+    }
   }
 }

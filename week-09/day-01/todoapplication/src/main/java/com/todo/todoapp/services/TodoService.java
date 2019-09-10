@@ -9,4 +9,5 @@ public interface TodoService {
   void deleteTodoById(long id);
   Todo findTodoById(long id);
   List<Todo> listTodos(String description, User user);
+  List<Todo> getTodosBySearch(String searchString, long idOfUser);
 }
