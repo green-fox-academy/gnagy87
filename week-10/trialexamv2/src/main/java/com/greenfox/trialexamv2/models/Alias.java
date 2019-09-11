@@ -1,5 +1,7 @@
 package com.greenfox.trialexamv2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +16,9 @@ public class Alias {
   private Long id;
   private String alias;
   private String url;
+  @JsonIgnore
   private String secretCode;
+  private int hitCount;
 
   public Alias(){
   }
@@ -23,6 +27,7 @@ public class Alias {
     this.alias = alias;
     this.url = url;
     this.secretCode = secretCodeGenerator();
+    this.hitCount = 0;
   }
 
   private String secretCodeGenerator() {
@@ -66,5 +71,13 @@ public class Alias {
 
   public void setSecretCode(String secretCode) {
     this.secretCode = secretCode;
+  }
+
+  public int getHitCount() {
+    return hitCount;
+  }
+
+  public void setHitCount(int hitCount) {
+    this.hitCount = hitCount;
   }
 }

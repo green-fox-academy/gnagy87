@@ -1,13 +1,14 @@
 package com.greenfox.trialexamv2.controllers;
 import com.greenfox.trialexamv2.services.AliasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.jws.WebParam;
 
 @Controller
 public class UserController {
@@ -40,5 +41,15 @@ public class UserController {
       model.addAttribute("failure", true);
       return "main";
     }
+  }
+
+  @GetMapping("/a/{alias}")
+  public Object incrementHitCount(@PathVariable ("alias") String alias){
+    if (aliasService.findAliasByAlias(alias) != null){
+      aliasService.incrementHitCount(alias);
+      String url = aliasService.findAliasByAlias(alias).getUrl();
+      return "redirect:https://" + url;
+    }
+      return new ResponseEntity(HttpStatus.NOT_FOUND);
   }
 }
