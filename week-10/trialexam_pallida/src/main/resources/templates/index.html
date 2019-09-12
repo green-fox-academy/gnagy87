@@ -29,7 +29,7 @@
             </tr>
             <tr th:each="car : ${foundedCars}">
                 <td th:text="${car.getLicencePlate()}"></td>
-                <td th:text="${car.getCarBrand()}"></td>
+                <td ><a th:href="'/search/' + ${car.getCarBrand()}" th:text="${car.getCarBrand()}"></a></td>
                 <td th:text="${car.getCarModel()}"></td>
                 <td th:text="${car.getColor()}"></td>
                 <td th:text="${car.getYear()}"></td>
