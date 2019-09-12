@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index page</title>
+</head>
+<body>
+
+    <div>
+        <form action="/search" method="get">
+            <label for="search">License plate</label>
+            <input type="text" name="search" id="search"><br>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div>
+        <a href="/police-cars">Police cars only</a>
+        <a href="/diplomat-cars">Diplomats only</a>
+    </div>
+    <p th:if="${failure} == false" th:text="'Sorry, the submitted licence plate is not valid'" style="color: red"></p>
+    <div>
+        <table th:if="${failure} == true">
+            <tr >
+                <th>Licence plate</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Year</th>
+            </tr>
+            <tr th:each="car : ${foundedCars}">
+                <td th:text="${car.getLicencePlate()}"></td>
+                <td th:text="${car.getCarBrand()}"></td>
+                <td th:text="${car.getCarModel()}"></td>
+                <td th:text="${car.getColor()}"></td>
+                <td th:text="${car.getYear()}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
